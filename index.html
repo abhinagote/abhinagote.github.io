@@ -10,31 +10,18 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --white:#ffffff;
-  --off:#f7f6f2;
-  --paper:#f0ede6;
-  --ink:#0d0d0d;
-  --ink2:#2a2a2a;
-  --muted:#6b6b6b;
-  --faint:#c8c4bb;
-  --line:#e2dfd8;
-  --teal:#00b896;
-  --teal-lt:#e6f9f5;
-  --teal-dk:#007a65;
-  --amber:#f59e0b;
-  --red:#ef4444;
-  --blue:#3b82f6;
-  --r:8px;
-  --r2:16px;
-  --r3:24px;
+  --white:#ffffff;--off:#f7f6f2;--ink:#0d0d0d;--muted:#6b6b6b;
+  --faint:#c8c4bb;--line:#e2dfd8;
+  --teal:#00b896;--teal-lt:#e6f9f5;--teal-dk:#007a65;
+  --r:8px;--r2:16px;--r3:24px;
 }
-html{scroll-behavior:smooth;font-size:16px}
+html{scroll-behavior:smooth}
 body{font-family:'Bricolage Grotesque',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;cursor:none}
 
-/* CUSTOM CURSOR */
-.cursor{position:fixed;width:12px;height:12px;background:var(--teal);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s,width .2s,height .2s,background .2s}
+/* CURSOR */
+.cursor{position:fixed;width:12px;height:12px;background:var(--teal);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s}
 .cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid var(--teal);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .12s ease-out;opacity:.6}
-body:hover .cursor{opacity:1}
+@media(hover:none){.cursor,.cursor-ring{display:none}body{cursor:auto}}
 
 /* SCROLLBAR */
 ::-webkit-scrollbar{width:4px}
@@ -42,183 +29,187 @@ body:hover .cursor{opacity:1}
 ::-webkit-scrollbar-thumb{background:var(--teal);border-radius:2px}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 3rem;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);transition:box-shadow .3s}
-nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.06)}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0 3rem;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);transition:box-shadow .3s}
+nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.07)}
 .nav-brand{font-family:'Clash Display',sans-serif;font-size:1.2rem;font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:-.02em}
 .nav-brand em{color:var(--teal);font-style:normal}
 .nav-menu{display:flex;gap:2rem;list-style:none}
-.nav-menu a{font-size:.82rem;font-weight:500;color:var(--muted);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s;position:relative}
+.nav-menu a{font-size:.8rem;font-weight:500;color:var(--muted);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s;position:relative}
 .nav-menu a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--teal);transform:scaleX(0);transition:transform .2s;transform-origin:left}
 .nav-menu a:hover{color:var(--ink)}
 .nav-menu a:hover::after{transform:scaleX(1)}
-.nav-cta{background:var(--ink);color:var(--white)!important;padding:.45rem 1.1rem;border-radius:100px;font-size:.78rem!important;transition:background .2s!important}
+.nav-cta{background:var(--ink)!important;color:var(--white)!important;padding:.4rem 1rem;border-radius:100px;font-size:.78rem!important}
 .nav-cta:hover{background:var(--teal)!important}
 .nav-cta::after{display:none!important}
 
 /* HERO */
-.hero{min-height:100svh;display:grid;grid-template-columns:1fr 420px;align-items:center;gap:4rem;padding:7rem 3rem 4rem;max-width:1280px;margin:0 auto}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--teal-dk);background:var(--teal-lt);border:1px solid rgba(0,184,150,.2);border-radius:100px;padding:.35rem 1rem;margin-bottom:2rem;letter-spacing:.04em}
+.hero{min-height:100svh;display:grid;grid-template-columns:1fr 400px;align-items:center;gap:4rem;padding:7rem 3rem 4rem;max-width:1280px;margin:0 auto}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--teal-dk);background:var(--teal-lt);border:1px solid rgba(0,184,150,.2);border-radius:100px;padding:.35rem 1rem;margin-bottom:2rem}
 .hero-eyebrow::before{content:'';width:7px;height:7px;background:var(--teal);border-radius:50%;animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.hero-name{font-family:'Clash Display',sans-serif;font-size:clamp(3.5rem,7vw,6.5rem);font-weight:700;line-height:.96;letter-spacing:-.04em;margin-bottom:1rem}
+.hero-name{font-family:'Clash Display',sans-serif;font-size:clamp(3.5rem,7vw,6.5rem);font-weight:700;line-height:.96;letter-spacing:-.04em;margin-bottom:1.25rem}
 .hero-name .first{display:block;color:var(--ink)}
-.hero-name .last{display:block;color:var(--teal);-webkit-text-stroke:0px}
-.hero-role{font-size:1.05rem;font-weight:300;color:var(--muted);margin-bottom:2rem;line-height:1.7;max-width:480px}
+.hero-name .last{display:block;color:var(--teal)}
+.hero-role{font-size:1rem;font-weight:300;color:var(--muted);margin-bottom:2rem;line-height:1.75;max-width:480px}
 .hero-role strong{color:var(--ink);font-weight:500}
-.hero-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:3rem}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.5rem;border-radius:100px;font-size:.875rem;font-weight:500;text-decoration:none;transition:all .2s;letter-spacing:.01em}
+.hero-actions{display:flex;gap:.65rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.65rem 1.35rem;border-radius:100px;font-size:.85rem;font-weight:500;text-decoration:none;transition:all .2s;letter-spacing:.01em;cursor:pointer}
 .btn-dark{background:var(--ink);color:var(--white)}
 .btn-dark:hover{background:var(--teal);transform:translateY(-2px)}
 .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
 .btn-outline:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px)}
-.hero-meta{display:flex;gap:2rem}
-.hero-meta-item{display:flex;flex-direction:column;gap:.2rem}
-.hero-meta-num{font-family:'Clash Display',sans-serif;font-size:2rem;font-weight:700;color:var(--ink);letter-spacing:-.03em}
-.hero-meta-num span{color:var(--teal)}
-.hero-meta-label{font-size:.75rem;color:var(--muted);font-weight:400;letter-spacing:.04em;text-transform:uppercase}
+.btn-resume{border-color:var(--teal);color:var(--teal-dk)}
+.btn-resume:hover{background:var(--teal-lt)}
+.hero-stats{display:flex;gap:2.5rem}
+.stat-num{font-family:'Clash Display',sans-serif;font-size:2rem;font-weight:700;color:var(--ink);letter-spacing:-.03em;line-height:1}
+.stat-num em{color:var(--teal);font-style:normal}
+.stat-lbl{font-size:.72rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:.25rem}
 
-/* HERO CARD */
+/* HERO PHOTO CARD */
 .hero-card-wrap{position:relative}
-.hero-photo-card{background:var(--off);border-radius:var(--r3);overflow:hidden;position:relative;aspect-ratio:3/4}
+.hero-photo-card{background:var(--off);border-radius:28px;overflow:hidden;position:relative;aspect-ratio:3/4}
 .hero-photo-card img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform .6s ease}
 .hero-photo-card:hover img{transform:scale(1.03)}
-.hero-card-tag{position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-radius:var(--r2);padding:1rem 1.25rem;display:flex;align-items:center;gap:1rem}
-.hero-card-tag-dot{width:10px;height:10px;background:var(--teal);border-radius:50%;flex-shrink:0;animation:blink 2s infinite}
-.hero-card-tag-text{flex:1}
-.hero-card-tag-title{font-size:.85rem;font-weight:600;color:var(--ink)}
-.hero-card-tag-sub{font-size:.75rem;color:var(--muted)}
-.hero-badge{position:absolute;top:-16px;right:-16px;width:80px;height:80px;background:var(--teal);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;animation:spin-slow 12s linear infinite;border:4px solid white}
-.hero-badge span:first-child{font-family:'Clash Display',sans-serif;font-size:1.4rem;font-weight:700;line-height:1}
-.hero-badge span:last-child{font-size:.5rem;letter-spacing:.1em;text-transform:uppercase}
-@keyframes spin-slow{to{transform:rotate(360deg)}}
+.hero-card-badge{position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;background:rgba(255,255,255,.93);backdrop-filter:blur(12px);border-radius:var(--r2);padding:.9rem 1.1rem;display:flex;align-items:center;gap:.85rem}
+.badge-dot{width:9px;height:9px;background:var(--teal);border-radius:50%;flex-shrink:0;animation:blink 2s infinite}
+.badge-title{font-size:.85rem;font-weight:600;color:var(--ink)}
+.badge-sub{font-size:.72rem;color:var(--muted)}
+.hero-pill{position:absolute;top:-14px;right:-14px;background:var(--teal);color:#fff;border-radius:50%;width:76px;height:76px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:4px solid #fff;font-size:.48rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;animation:spin-badge 14s linear infinite}
+.hero-pill span:first-child{font-family:'Clash Display',sans-serif;font-size:1.3rem;font-weight:700;letter-spacing:-.02em}
+@keyframes spin-badge{to{transform:rotate(360deg)}}
 
 /* MARQUEE */
-.marquee-section{background:var(--ink);padding:1rem 0;overflow:hidden}
-.marquee-track{display:flex;gap:0;animation:marquee 20s linear infinite;width:max-content}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.marquee-item{display:flex;align-items:center;gap:1rem;padding:0 1.5rem;white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:.8rem;color:rgba(255,255,255,.5);letter-spacing:.04em}
-.marquee-dot{width:4px;height:4px;background:var(--teal);border-radius:50%}
+.marquee-wrap{background:var(--ink);padding:.85rem 0;overflow:hidden}
+.marquee-inner{display:flex;width:max-content;animation:scroll-left 22s linear infinite}
+@keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.m-item{display:flex;align-items:center;gap:.9rem;padding:0 1.25rem;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:rgba(255,255,255,.45);white-space:nowrap}
+.m-dot{width:4px;height:4px;background:var(--teal);border-radius:50%;flex-shrink:0}
 
-/* SECTIONS COMMON */
-.section{padding:6rem 3rem;max-width:1280px;margin:0 auto}
-.section-head{margin-bottom:3.5rem}
-.section-kicker{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--teal);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:.6rem}
-.section-kicker::before{content:'';display:inline-block;width:24px;height:2px;background:var(--teal)}
-.section-title{font-family:'Clash Display',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;letter-spacing:-.03em;color:var(--ink);line-height:1.05}
+/* SECTIONS */
+.section{padding:5.5rem 3rem;max-width:1280px;margin:0 auto}
+.sec-kicker{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+.sec-kicker::before{content:'';display:inline-block;width:22px;height:2px;background:var(--teal);flex-shrink:0}
+.sec-title{font-family:'Clash Display',sans-serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:700;letter-spacing:-.03em;color:var(--ink);line-height:1.05;margin-bottom:2.75rem}
+.divider{height:1px;background:var(--line);max-width:1280px;margin:0 auto 0 3rem}
 
-/* SKILLS */
-.skills-wrap{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
-.skill-chip{background:var(--off);border:1px solid var(--line);border-radius:var(--r2);padding:1.25rem;transition:all .25s;position:relative;overflow:hidden}
-.skill-chip::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--teal-lt),transparent);opacity:0;transition:opacity .25s}
-.skill-chip:hover{border-color:var(--teal);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,184,150,.12)}
-.skill-chip:hover::before{opacity:1}
-.skill-chip-icon{font-size:1.6rem;margin-bottom:.75rem;display:block}
-.skill-chip-name{font-size:.875rem;font-weight:600;color:var(--ink);margin-bottom:.3rem}
-.skill-chip-type{font-size:.72rem;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+/* SKILLS GRID */
+.skills-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.85rem}
+.sk{background:var(--off);border:1px solid var(--line);border-radius:var(--r2);padding:1.1rem;transition:all .25s;position:relative;overflow:hidden;cursor:default}
+.sk::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--teal-lt),transparent);opacity:0;transition:opacity .25s}
+.sk:hover{border-color:var(--teal);transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,184,150,.1)}
+.sk:hover::before{opacity:1}
+.sk-icon{font-size:1.5rem;margin-bottom:.6rem;display:block;position:relative}
+.sk-name{font-size:.85rem;font-weight:600;color:var(--ink);position:relative}
+.sk-type{font-size:.68rem;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:.03em;margin-top:.2rem;position:relative}
 
-/* EXPERIENCE TIMELINE */
+/* TIMELINE */
 .timeline{position:relative;padding-left:2rem}
 .timeline::before{content:'';position:absolute;left:0;top:.5rem;bottom:.5rem;width:2px;background:linear-gradient(to bottom,var(--teal),var(--line))}
-.timeline-item{position:relative;padding-bottom:3rem}
-.timeline-item:last-child{padding-bottom:0}
-.timeline-dot{position:absolute;left:-2.45rem;top:.3rem;width:16px;height:16px;background:var(--white);border:2px solid var(--teal);border-radius:50%;transition:background .2s}
-.timeline-item:hover .timeline-dot{background:var(--teal)}
-.timeline-card{background:var(--off);border:1px solid var(--line);border-radius:var(--r2);padding:1.75rem 2rem;transition:all .25s}
-.timeline-card:hover{border-color:var(--teal);box-shadow:0 8px 32px rgba(0,0,0,.06);transform:translateX(6px)}
-.tl-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;gap:1rem;flex-wrap:wrap}
-.tl-title{font-family:'Clash Display',sans-serif;font-size:1.15rem;font-weight:600;color:var(--ink);letter-spacing:-.01em}
-.tl-company{color:var(--teal);font-size:.875rem;font-weight:500;margin-top:.2rem}
-.tl-badge{background:var(--ink);color:var(--white);font-size:.7rem;padding:.3rem .9rem;border-radius:100px;white-space:nowrap;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
-.tl-points{list-style:none;display:flex;flex-direction:column;gap:.5rem}
-.tl-points li{font-size:.9rem;color:var(--muted);padding-left:1.5rem;position:relative;line-height:1.6}
-.tl-points li::before{content:'▸';position:absolute;left:0;color:var(--teal);font-size:.75rem;top:.1rem}
+.tl-item{position:relative;padding-bottom:2.5rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-2.45rem;top:.35rem;width:15px;height:15px;background:var(--white);border:2px solid var(--teal);border-radius:50%;transition:background .2s}
+.tl-item:hover .tl-dot{background:var(--teal)}
+.tl-card{background:var(--off);border:1px solid var(--line);border-radius:var(--r2);padding:1.6rem 1.75rem;transition:all .25s}
+.tl-card:hover{border-color:var(--teal);box-shadow:0 6px 28px rgba(0,0,0,.05);transform:translateX(5px)}
+.tl-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:.85rem}
+.tl-title{font-family:'Clash Display',sans-serif;font-size:1.1rem;font-weight:600;color:var(--ink)}
+.tl-company{color:var(--teal);font-size:.85rem;font-weight:500;margin-top:.2rem}
+.tl-period{background:var(--ink);color:var(--white);font-size:.68rem;padding:.28rem .85rem;border-radius:100px;white-space:nowrap;font-family:'JetBrains Mono',monospace;flex-shrink:0}
+.tl-list{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.tl-list li{font-size:.875rem;color:var(--muted);padding-left:1.3rem;position:relative;line-height:1.6}
+.tl-list li::before{content:'▸';position:absolute;left:0;color:var(--teal);font-size:.72rem;top:.1rem}
 
-/* PROJECTS */
-.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
-.projects-grid .proj-card:nth-last-child(-n+2):nth-child(3n+1){grid-column:span 1}
-.proj-card{border:1px solid var(--line);border-radius:var(--r3);padding:2rem;transition:all .3s;position:relative;overflow:hidden;background:var(--white);display:flex;flex-direction:column}
-.proj-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,184,150,.04),transparent 60%);opacity:0;transition:opacity .3s}
-.proj-card:hover{border-color:var(--teal);transform:translateY(-6px);box-shadow:0 24px 48px rgba(0,0,0,.08)}
+/* PROJECTS GRID — clickable cards */
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+.proj-card{display:flex;flex-direction:column;border:1.5px solid var(--line);border-radius:var(--r3);padding:1.75rem;transition:all .28s;position:relative;overflow:hidden;background:var(--white);text-decoration:none;color:inherit}
+.proj-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,184,150,.05),transparent 60%);opacity:0;transition:opacity .28s;pointer-events:none}
+.proj-card:hover{border-color:var(--teal);transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.09)}
 .proj-card:hover::after{opacity:1}
-.proj-num{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--faint);letter-spacing:.08em;margin-bottom:1.5rem}
-.proj-icon-wrap{width:52px;height:52px;border-radius:var(--r);background:var(--off);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.25rem;transition:background .2s}
-.proj-card:hover .proj-icon-wrap{background:var(--teal-lt)}
-.proj-name{font-family:'Clash Display',sans-serif;font-size:1.1rem;font-weight:600;letter-spacing:-.02em;color:var(--ink);margin-bottom:.75rem;line-height:1.2}
-.proj-desc{font-size:.875rem;color:var(--muted);line-height:1.7;flex:1;margin-bottom:1.5rem}
-.proj-tags{display:flex;flex-wrap:wrap;gap:.4rem}
-.proj-tag{font-size:.7rem;font-family:'JetBrains Mono',monospace;padding:.25rem .65rem;border-radius:6px;border:1px solid;letter-spacing:.03em}
-.tag-t{background:var(--teal-lt);border-color:rgba(0,184,150,.25);color:var(--teal-dk)}
-.tag-a{background:#fffbeb;border-color:rgba(245,158,11,.25);color:#92400e}
-.tag-b{background:#eff6ff;border-color:rgba(59,130,246,.25);color:#1e40af}
-.tag-r{background:#fef2f2;border-color:rgba(239,68,68,.25);color:#991b1b}
+.proj-num{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--faint);letter-spacing:.08em;margin-bottom:1.25rem}
+.proj-icon{width:48px;height:48px;border-radius:var(--r);background:var(--off);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.1rem;transition:background .2s}
+.proj-card:hover .proj-icon{background:var(--teal-lt)}
+.proj-name{font-family:'Clash Display',sans-serif;font-size:1.05rem;font-weight:600;letter-spacing:-.02em;color:var(--ink);margin-bottom:.65rem;line-height:1.2}
+.proj-desc{font-size:.85rem;color:var(--muted);line-height:1.72;flex:1;margin-bottom:1.25rem}
+.proj-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.1rem}
+.pt{font-size:.68rem;font-family:'JetBrains Mono',monospace;padding:.22rem .6rem;border-radius:5px;border:1px solid;letter-spacing:.02em}
+.pt-t{background:var(--teal-lt);border-color:rgba(0,184,150,.25);color:var(--teal-dk)}
+.pt-a{background:#fffbeb;border-color:rgba(245,158,11,.25);color:#92400e}
+.pt-b{background:#eff6ff;border-color:rgba(59,130,246,.25);color:#1e40af}
+.pt-r{background:#fef2f2;border-color:rgba(239,68,68,.25);color:#991b1b}
+.proj-link-row{display:flex;align-items:center;gap:.35rem;font-size:.78rem;color:var(--teal);font-weight:500;margin-top:auto}
+.proj-link-row svg{transition:transform .2s}
+.proj-card:hover .proj-link-row svg{transform:translateX(3px)}
 
 /* EDUCATION */
 .edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.edu-card{background:var(--off);border:1px solid var(--line);border-radius:var(--r2);padding:1.75rem;transition:all .25s}
+.edu-card{background:var(--off);border:1px solid var(--line);border-radius:var(--r2);padding:1.6rem;transition:all .25s}
 .edu-card:hover{border-color:var(--teal);transform:translateY(-3px)}
-.edu-year{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--teal);letter-spacing:.08em;margin-bottom:1rem}
-.edu-degree{font-family:'Clash Display',sans-serif;font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.4rem;line-height:1.3;letter-spacing:-.01em}
-.edu-school{font-size:.85rem;color:var(--muted)}
+.edu-yr{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--teal);letter-spacing:.08em;margin-bottom:.85rem}
+.edu-deg{font-family:'Clash Display',sans-serif;font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:.35rem;line-height:1.3}
+.edu-school{font-size:.82rem;color:var(--muted)}
 
 /* PUBLICATION */
-.pub-section{background:var(--ink);border-radius:var(--r3);padding:3rem;display:flex;align-items:center;gap:3rem;margin-top:3rem}
-.pub-icon{width:64px;height:64px;background:var(--teal);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:1.75rem;flex-shrink:0}
-.pub-kicker{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
-.pub-title{font-family:'Clash Display',sans-serif;font-size:1.1rem;font-weight:600;color:var(--white);line-height:1.4;letter-spacing:-.01em}
-.pub-year{margin-top:.75rem;font-size:.8rem;color:rgba(255,255,255,.4);font-family:'JetBrains Mono',monospace}
+.pub-card{background:var(--ink);border-radius:var(--r3);padding:2.5rem;display:flex;align-items:center;gap:2.5rem;margin-top:2rem}
+.pub-icon-box{width:58px;height:58px;background:var(--teal);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0}
+.pub-kicker{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.45rem}
+.pub-title{font-family:'Clash Display',sans-serif;font-size:1.05rem;font-weight:600;color:#fff;line-height:1.45;letter-spacing:-.01em}
+.pub-yr{margin-top:.6rem;font-size:.75rem;color:rgba(255,255,255,.35);font-family:'JetBrains Mono',monospace}
 
 /* CONTACT */
-.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
-.contact-big{font-family:'Clash Display',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;letter-spacing:-.04em;line-height:1.05;margin-bottom:1.5rem;color:var(--ink)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.contact-big{font-family:'Clash Display',sans-serif;font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:700;letter-spacing:-.04em;line-height:1.06;margin-bottom:1.25rem}
 .contact-big em{color:var(--teal);font-style:normal}
-.contact-sub{font-size:1rem;color:var(--muted);line-height:1.75;margin-bottom:2.5rem;font-weight:300}
-.contact-links-stack{display:flex;flex-direction:column;gap:.75rem}
-.contact-row{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;border:1px solid var(--line);border-radius:var(--r2);text-decoration:none;color:var(--ink);transition:all .2s;background:var(--white)}
-.contact-row:hover{border-color:var(--teal);transform:translateX(6px);background:var(--teal-lt)}
-.contact-row-icon{width:38px;height:38px;background:var(--off);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;transition:background .2s}
-.contact-row:hover .contact-row-icon{background:var(--teal);color:white}
-.contact-row-info{flex:1}
-.contact-row-label{font-size:.72rem;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:.05em;text-transform:uppercase}
-.contact-row-val{font-size:.875rem;font-weight:500}
-.contact-arrow{color:var(--faint);transition:color .2s;font-size:1.1rem}
-.contact-row:hover .contact-arrow{color:var(--teal)}
+.contact-sub{font-size:.95rem;color:var(--muted);line-height:1.75;margin-bottom:2rem;font-weight:300}
+.contact-stack{display:flex;flex-direction:column;gap:.65rem}
+.c-row{display:flex;align-items:center;gap:.85rem;padding:1rem 1.1rem;border:1px solid var(--line);border-radius:var(--r2);text-decoration:none;color:var(--ink);transition:all .2s;background:var(--white)}
+.c-row:hover{border-color:var(--teal);transform:translateX(5px);background:var(--teal-lt)}
+.c-icon{width:36px;height:36px;background:var(--off);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;transition:background .2s}
+.c-row:hover .c-icon{background:var(--teal)}
+.c-info{flex:1}
+.c-label{font-size:.68rem;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:.05em;text-transform:uppercase}
+.c-val{font-size:.86rem;font-weight:500}
+.c-arrow{color:var(--faint);transition:color .2s}
+.c-row:hover .c-arrow{color:var(--teal)}
 
 /* FOOTER */
-footer{border-top:1px solid var(--line);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.8rem}
+footer{border-top:1px solid var(--line);padding:1.75rem 3rem;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.78rem}
 footer a{color:var(--teal);text-decoration:none}
 
-/* SCROLL REVEAL */
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity .7s ease,transform .7s ease}
-.reveal-left.visible{opacity:1;transform:translateX(0)}
-
-/* SECTION DIVIDER */
-.divider{height:1px;background:var(--line);max-width:1280px;margin:0 auto 0 3rem}
+/* REVEAL ANIMATIONS */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.on{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity .65s ease,transform .65s ease}
+.reveal-l.on{opacity:1;transform:translateX(0)}
 
 /* RESPONSIVE */
-@media(max-width:900px){
+@media(max-width:960px){
   nav{padding:0 1.5rem}
   .nav-menu{display:none}
-  .hero{grid-template-columns:1fr;padding:6rem 1.5rem 3rem;gap:2.5rem}
-  .hero-card-wrap{max-width:320px;margin:0 auto}
-  .skills-wrap{grid-template-columns:repeat(3,1fr)}
-  .projects-grid{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr;padding:6rem 1.5rem 3rem;gap:2rem}
+  .hero-card-wrap{max-width:300px;margin:0 auto}
+  .skills-grid{grid-template-columns:repeat(3,1fr)}
+  .projects-grid{grid-template-columns:1fr 1fr}
   .edu-grid{grid-template-columns:1fr}
-  .contact-wrap{grid-template-columns:1fr}
-  .pub-section{flex-direction:column;gap:1.5rem}
+  .contact-grid{grid-template-columns:1fr}
+  .pub-card{flex-direction:column;gap:1.25rem}
   .section{padding:4rem 1.5rem}
-  footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.5rem}
+  footer{padding:1.5rem;flex-direction:column;gap:.5rem;text-align:center}
+  .divider{margin-left:1.5rem}
+}
+@media(max-width:580px){
+  .projects-grid{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-stats{gap:1.5rem}
 }
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor" id="C"></div>
+<div class="cursor-ring" id="CR"></div>
 
 <!-- NAV -->
-<nav id="navbar">
+<nav id="nav">
   <a href="#" class="nav-brand">Abhay<em>.</em></a>
   <ul class="nav-menu">
     <li><a href="#skills">Skills</a></li>
@@ -229,59 +220,47 @@ footer a{color:var(--teal);text-decoration:none}
   </ul>
 </nav>
 
-<!-- HERO -->
+<!-- ═══ HERO ═══ -->
 <section style="background:var(--white)">
   <div class="hero">
-    <div class="hero-left reveal-left">
+    <div class="reveal-l">
       <div class="hero-eyebrow">Open to opportunities · Pune, India</div>
       <h1 class="hero-name">
         <span class="first">Abhay</span>
         <span class="last">Nagote</span>
       </h1>
       <p class="hero-role">
-        <strong>Full-Stack Developer</strong> skilled in Java, Spring Boot &amp; React — building scalable backend systems, workflow automation platforms, and AI-powered applications.
+        <strong>Full-Stack Developer</strong> skilled in Java, Spring Boot &amp; React — building scalable backends, workflow automation platforms, and AI-powered applications.
       </p>
       <div class="hero-actions">
         <a href="mailto:abhaynagote1235@gmail.com" class="btn btn-dark">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           Get in Touch
         </a>
         <a href="https://www.linkedin.com/in/abhay-nagote-7b0492322/" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
         <a href="https://github.com/abhinagote" target="_blank" class="btn btn-outline">GitHub ↗</a>
         <a href="https://www.instagram.com/abhi_nagote_080/" target="_blank" class="btn btn-outline">Instagram ↗</a>
-        <a href="Resume_Abhay-Nagote.pdf" download="Resume_Abhay-Nagote.pdf" class="btn btn-outline" style="border-color:var(--teal);color:var(--teal-dk)">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <a href="Resume_Abhay-Nagote.pdf" download class="btn btn-outline btn-resume">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Resume
         </a>
       </div>
-      <div class="hero-meta">
-        <div class="hero-meta-item">
-          <div class="hero-meta-num">8<span>+</span></div>
-          <div class="hero-meta-label">Projects</div>
-        </div>
-        <div class="hero-meta-item">
-          <div class="hero-meta-num">2<span></span></div>
-          <div class="hero-meta-label">Internships</div>
-        </div>
-        <div class="hero-meta-item">
-          <div class="hero-meta-num">1<span></span></div>
-          <div class="hero-meta-label">Publication</div>
-        </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">8<em>+</em></div><div class="stat-lbl">Projects</div></div>
+        <div><div class="stat-num">2</div><div class="stat-lbl">Internships</div></div>
+        <div><div class="stat-num">1</div><div class="stat-lbl">Publication</div></div>
       </div>
     </div>
 
     <div class="hero-card-wrap reveal">
-      <div class="hero-badge">
-        <span>B.Tech</span>
-        <span>CS·AI&DS</span>
-      </div>
+      <div class="hero-pill"><span>B.Tech</span><span>CS · AI&DS</span></div>
       <div class="hero-photo-card">
         <img src="IMG-20260110-WA0003.jpg" alt="Abhay Nagote" />
-        <div class="hero-card-tag">
-          <div class="hero-card-tag-dot"></div>
-          <div class="hero-card-tag-text">
-            <div class="hero-card-tag-title">Abhay Nagote</div>
-            <div class="hero-card-tag-sub">Full-Stack Developer · MIT-WPU</div>
+        <div class="hero-card-badge">
+          <div class="badge-dot"></div>
+          <div>
+            <div class="badge-title">Abhay Nagote</div>
+            <div class="badge-sub">Full-Stack Developer · MIT-WPU</div>
           </div>
         </div>
       </div>
@@ -290,102 +269,89 @@ footer a{color:var(--teal);text-decoration:none}
 </section>
 
 <!-- MARQUEE -->
-<div class="marquee-section">
-  <div class="marquee-track">
-    <div class="marquee-item">Java <span class="marquee-dot"></span></div>
-    <div class="marquee-item">Spring Boot <span class="marquee-dot"></span></div>
-    <div class="marquee-item">React <span class="marquee-dot"></span></div>
-    <div class="marquee-item">Docker <span class="marquee-dot"></span></div>
-    <div class="marquee-item">MySQL <span class="marquee-dot"></span></div>
-    <div class="marquee-item">YOLOv8 <span class="marquee-dot"></span></div>
-    <div class="marquee-item">AWS <span class="marquee-dot"></span></div>
-    <div class="marquee-item">REST APIs <span class="marquee-dot"></span></div>
-    <div class="marquee-item">Camunda BPM <span class="marquee-dot"></span></div>
-    <div class="marquee-item">Python <span class="marquee-dot"></span></div>
-    <div class="marquee-item">MongoDB <span class="marquee-dot"></span></div>
-    <div class="marquee-item">TensorFlow <span class="marquee-dot"></span></div>
-    <!-- repeat for seamless loop -->
-    <div class="marquee-item">Java <span class="marquee-dot"></span></div>
-    <div class="marquee-item">Spring Boot <span class="marquee-dot"></span></div>
-    <div class="marquee-item">React <span class="marquee-dot"></span></div>
-    <div class="marquee-item">Docker <span class="marquee-dot"></span></div>
-    <div class="marquee-item">MySQL <span class="marquee-dot"></span></div>
-    <div class="marquee-item">YOLOv8 <span class="marquee-dot"></span></div>
-    <div class="marquee-item">AWS <span class="marquee-dot"></span></div>
-    <div class="marquee-item">REST APIs <span class="marquee-dot"></span></div>
-    <div class="marquee-item">Camunda BPM <span class="marquee-dot"></span></div>
-    <div class="marquee-item">Python <span class="marquee-dot"></span></div>
-    <div class="marquee-item">MongoDB <span class="marquee-dot"></span></div>
-    <div class="marquee-item">TensorFlow <span class="marquee-dot"></span></div>
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="m-item">Java<span class="m-dot"></span></span>
+    <span class="m-item">Spring Boot<span class="m-dot"></span></span>
+    <span class="m-item">React<span class="m-dot"></span></span>
+    <span class="m-item">Docker<span class="m-dot"></span></span>
+    <span class="m-item">MySQL<span class="m-dot"></span></span>
+    <span class="m-item">YOLOv8<span class="m-dot"></span></span>
+    <span class="m-item">AWS<span class="m-dot"></span></span>
+    <span class="m-item">REST APIs<span class="m-dot"></span></span>
+    <span class="m-item">Camunda BPM<span class="m-dot"></span></span>
+    <span class="m-item">Python<span class="m-dot"></span></span>
+    <span class="m-item">MongoDB<span class="m-dot"></span></span>
+    <span class="m-item">TensorFlow<span class="m-dot"></span></span>
+    <span class="m-item">Java<span class="m-dot"></span></span>
+    <span class="m-item">Spring Boot<span class="m-dot"></span></span>
+    <span class="m-item">React<span class="m-dot"></span></span>
+    <span class="m-item">Docker<span class="m-dot"></span></span>
+    <span class="m-item">MySQL<span class="m-dot"></span></span>
+    <span class="m-item">YOLOv8<span class="m-dot"></span></span>
+    <span class="m-item">AWS<span class="m-dot"></span></span>
+    <span class="m-item">REST APIs<span class="m-dot"></span></span>
+    <span class="m-item">Camunda BPM<span class="m-dot"></span></span>
+    <span class="m-item">Python<span class="m-dot"></span></span>
+    <span class="m-item">MongoDB<span class="m-dot"></span></span>
+    <span class="m-item">TensorFlow<span class="m-dot"></span></span>
   </div>
 </div>
 
-<!-- SKILLS -->
+<!-- ═══ SKILLS ═══ -->
 <section id="skills" style="background:var(--white)">
   <div class="section">
-    <div class="section-head reveal">
-      <div class="section-kicker">Expertise</div>
-      <h2 class="section-title">Skills &amp; Technologies</h2>
-    </div>
-    <div class="skills-wrap reveal">
-      <div class="skill-chip"><span class="skill-chip-icon">☕</span><div class="skill-chip-name">Java</div><div class="skill-chip-type">Language</div></div>
-      <div class="skill-chip"><span class="skill-chip-icon">🐍</span><div class="skill-chip-name">Python</div><div class="skill-chip-type">Language</div></div>
-      <div class="skill-chip"><span class="skill-chip-icon">🟨</span><div class="skill-chip-name">JavaScript</div><div class="skill-chip-type">Language</div></div>
-      <div class="skill-chip"><span class="skill-chip-icon">🌱</span><div class="skill-chip-name">Spring Boot</div><div class="skill-chip-type">Framework</div></div>
-      <div class="skill-chip"><span class="skill-chip-icon">⚛️</span><div class="skill-chip-name">React</div><div class="skill-chip-type">Framework</div></div>
-      <div class="skill-chip"><span class="skill-chip-icon">🐳</span><div class="skill-chip-name">Docker</div><div class="skill-chip-type">DevOps</div></div>
-      <div class="skill-chip"><span class="skill-chip-icon">☁️</span><div class="skill-chip-name">AWS</div><div class="skill-chip-type">Cloud</div></div>
-      <div class="skill-chip"><span class="skill-chip-icon">🗄️</span><div class="skill-chip-name">MySQL</div><div class="skill-chip-type">Database</div></div>
-      <div class="skill-chip"><span class="skill-chip-icon">🍃</span><div class="skill-chip-name">MongoDB</div><div class="skill-chip-type">Database</div></div>
-      <div class="skill-chip"><span class="skill-chip-icon">⚙️</span><div class="skill-chip-name">Camunda BPM</div><div class="skill-chip-type">Workflow</div></div>
-      <div class="skill-chip"><span class="skill-chip-icon">🔐</span><div class="skill-chip-name">JWT Auth</div><div class="skill-chip-type">Security</div></div>
-      <div class="skill-chip"><span class="skill-chip-icon">🔗</span><div class="skill-chip-name">REST APIs</div><div class="skill-chip-type">Architecture</div></div>
-      <div class="skill-chip"><span class="skill-chip-icon">🧬</span><div class="skill-chip-name">Hibernate/JPA</div><div class="skill-chip-type">ORM</div></div>
-      <div class="skill-chip"><span class="skill-chip-icon">🧪</span><div class="skill-chip-name">SonarQube</div><div class="skill-chip-type">Quality</div></div>
-      <div class="skill-chip"><span class="skill-chip-icon">🐙</span><div class="skill-chip-name">Git / GitHub</div><div class="skill-chip-type">VCS</div></div>
+    <div class="reveal"><div class="sec-kicker">Expertise</div><h2 class="sec-title">Skills &amp; Technologies</h2></div>
+    <div class="skills-grid reveal">
+      <div class="sk"><span class="sk-icon">☕</span><div class="sk-name">Java</div><div class="sk-type">Language</div></div>
+      <div class="sk"><span class="sk-icon">🐍</span><div class="sk-name">Python</div><div class="sk-type">Language</div></div>
+      <div class="sk"><span class="sk-icon">🟨</span><div class="sk-name">JavaScript</div><div class="sk-type">Language</div></div>
+      <div class="sk"><span class="sk-icon">🌱</span><div class="sk-name">Spring Boot</div><div class="sk-type">Framework</div></div>
+      <div class="sk"><span class="sk-icon">⚛️</span><div class="sk-name">React</div><div class="sk-type">Framework</div></div>
+      <div class="sk"><span class="sk-icon">🐳</span><div class="sk-name">Docker</div><div class="sk-type">DevOps</div></div>
+      <div class="sk"><span class="sk-icon">☁️</span><div class="sk-name">AWS</div><div class="sk-type">Cloud</div></div>
+      <div class="sk"><span class="sk-icon">🗄️</span><div class="sk-name">MySQL</div><div class="sk-type">Database</div></div>
+      <div class="sk"><span class="sk-icon">🍃</span><div class="sk-name">MongoDB</div><div class="sk-type">Database</div></div>
+      <div class="sk"><span class="sk-icon">⚙️</span><div class="sk-name">Camunda BPM</div><div class="sk-type">Workflow</div></div>
+      <div class="sk"><span class="sk-icon">🔐</span><div class="sk-name">JWT Auth</div><div class="sk-type">Security</div></div>
+      <div class="sk"><span class="sk-icon">🔗</span><div class="sk-name">REST APIs</div><div class="sk-type">Architecture</div></div>
+      <div class="sk"><span class="sk-icon">🧬</span><div class="sk-name">Hibernate/JPA</div><div class="sk-type">ORM</div></div>
+      <div class="sk"><span class="sk-icon">🧪</span><div class="sk-name">SonarQube</div><div class="sk-type">Quality</div></div>
+      <div class="sk"><span class="sk-icon">🐙</span><div class="sk-name">Git / GitHub</div><div class="sk-type">VCS</div></div>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- EXPERIENCE -->
+<!-- ═══ EXPERIENCE ═══ -->
 <section id="experience" style="background:var(--white)">
   <div class="section">
-    <div class="section-head reveal">
-      <div class="section-kicker">Work</div>
-      <h2 class="section-title">Experience</h2>
-    </div>
+    <div class="reveal"><div class="sec-kicker">Work</div><h2 class="sec-title">Experience</h2></div>
     <div class="timeline reveal">
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <div class="tl-header">
-            <div>
-              <div class="tl-title">Backend Intern</div>
-              <div class="tl-company">Ebix Technologies Private Limited</div>
-            </div>
-            <span class="tl-badge">Jun 2025 – Dec 2025</span>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div><div class="tl-title">Backend Intern</div><div class="tl-company">Ebix Technologies Private Limited</div></div>
+            <span class="tl-period">Jun 2025 – Dec 2025</span>
           </div>
-          <ul class="tl-points">
+          <ul class="tl-list">
             <li>Built and debugged RESTful APIs and database integrations using Java and Spring Boot.</li>
-            <li>Delivered full-stack features by seamlessly integrating backend services with React front-ends.</li>
+            <li>Delivered full-stack features by integrating backend services with React front-ends.</li>
           </ul>
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-card">
-          <div class="tl-header">
-            <div>
-              <div class="tl-title">Web Development Intern</div>
-              <div class="tl-company">Sumago Infotech</div>
-            </div>
-            <span class="tl-badge">Jun 2022 – Aug 2022</span>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div><div class="tl-title">Web Development Intern</div><div class="tl-company">Sumago Infotech</div></div>
+            <span class="tl-period">Jun 2022 – Aug 2022</span>
           </div>
-          <ul class="tl-points">
+          <ul class="tl-list">
             <li>Developed and tested responsive web applications using HTML, CSS, JavaScript, and Bootstrap.</li>
-            <li>Assisted in building and maintaining websites with focus on performance and user experience.</li>
+            <li>Assisted in building and maintaining websites focused on performance and user experience.</li>
           </ul>
         </div>
       </div>
@@ -395,133 +361,107 @@ footer a{color:var(--teal);text-decoration:none}
 
 <div class="divider"></div>
 
-<!-- PROJECTS -->
+<!-- ═══ PROJECTS ═══ -->
 <section id="projects" style="background:var(--white)">
   <div class="section">
-    <div class="section-head reveal">
-      <div class="section-kicker">Portfolio</div>
-      <h2 class="section-title">Featured Projects</h2>
-    </div>
+    <div class="reveal"><div class="sec-kicker">Portfolio</div><h2 class="sec-title">Featured Projects</h2></div>
     <div class="projects-grid reveal">
 
-      <div class="proj-card">
+      <!-- 01 -->
+      <a class="proj-card" href="https://github.com/ArpanMoharana/BASIC-Brain-Tumor-Detection" target="_blank" rel="noopener">
         <div class="proj-num">01 / PROJECT</div>
-        <div class="proj-icon-wrap">🧠</div>
+        <div class="proj-icon">🧠</div>
         <h3 class="proj-name">Brain Tumor Detection System</h3>
-        <p class="proj-desc">AI-powered web app detecting brain tumors from MRI scans using a 7-stage multi-model ensemble — CNN texture analysis, SAM segmentation, and GNN geometric reasoning. Returns visual evidence at every pipeline stage.</p>
+        <p class="proj-desc">AI-powered app detecting brain tumors from MRI scans via a 7-stage multi-model ensemble — CNN texture analysis, SAM segmentation &amp; GNN geometric reasoning.</p>
         <div class="proj-tags">
-          <span class="proj-tag tag-t">TensorFlow</span>
-          <span class="proj-tag tag-r">PyTorch</span>
-          <span class="proj-tag tag-b">SAM</span>
-          <span class="proj-tag tag-a">GNN</span>
-          <span class="proj-tag tag-t">React</span>
-          <span class="proj-tag tag-t">Flask</span>
+          <span class="pt pt-t">TensorFlow</span><span class="pt pt-r">PyTorch</span><span class="pt pt-b">SAM</span><span class="pt pt-a">GNN</span><span class="pt pt-t">React</span><span class="pt pt-t">Flask</span>
         </div>
-        <a href="https://github.com/ArpanMoharana/BASIC-Brain-Tumor-Detection" target="_blank" style="margin-top:1.25rem;font-size:.78rem;color:var(--teal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.35rem">View on GitHub ↗</a>
-      </div>
+        <div class="proj-link-row">View on GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
 
-      <div class="proj-card">
+      <!-- 02 -->
+      <a class="proj-card" href="https://github.com/abhinagote/End-to-End-Loan-Processing-and-Approval-System" target="_blank" rel="noopener">
         <div class="proj-num">02 / PROJECT</div>
-        <div class="proj-icon-wrap">🏦</div>
+        <div class="proj-icon">🏦</div>
         <h3 class="proj-name">Loan Processing &amp; Approval System</h3>
-        <p class="proj-desc">Full-stack loan processing platform with React, Spring Boot and MySQL. Features BPMN-based approval routing via Camunda BPM and fully containerized deployment with Docker Compose.</p>
+        <p class="proj-desc">Full-stack platform with React, Spring Boot &amp; MySQL. BPMN-based approval routing via Camunda BPM and fully containerized deployment with Docker Compose.</p>
         <div class="proj-tags">
-          <span class="proj-tag tag-t">React</span>
-          <span class="proj-tag tag-t">Spring Boot</span>
-          <span class="proj-tag tag-a">MySQL</span>
-          <span class="proj-tag tag-b">Camunda BPM</span>
-          <span class="proj-tag tag-r">Docker</span>
+          <span class="pt pt-t">React</span><span class="pt pt-t">Spring Boot</span><span class="pt pt-a">MySQL</span><span class="pt pt-b">Camunda BPM</span><span class="pt pt-r">Docker</span>
         </div>
-        <a href="https://github.com/abhinagote/End-to-End-Loan-Processing-and-Approval-System" target="_blank" style="margin-top:1.25rem;font-size:.78rem;color:var(--teal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.35rem">View on GitHub ↗</a>
-      </div>
+        <div class="proj-link-row">View on GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
 
-      <div class="proj-card">
+      <!-- 03 -->
+      <a class="proj-card" href="https://github.com/abhinagote/Smart_Traffic_Violation_Detection" target="_blank" rel="noopener">
         <div class="proj-num">03 / PROJECT</div>
-        <div class="proj-icon-wrap">🚦</div>
+        <div class="proj-icon">🚦</div>
         <h3 class="proj-name">Smart Traffic Violation Detection</h3>
-        <p class="proj-desc">Real-time AI traffic violation detection using YOLOv8, OpenCV &amp; TensorFlow. Automates helmet, triple-seat &amp; wrong-way detection with a Flask dashboard for alert management.</p>
+        <p class="proj-desc">Real-time AI traffic violation detection using YOLOv8, OpenCV &amp; TensorFlow. Automates helmet, triple-seat &amp; wrong-way detection with a Flask alert dashboard.</p>
         <div class="proj-tags">
-          <span class="proj-tag tag-t">YOLOv8</span>
-          <span class="proj-tag tag-b">OpenCV</span>
-          <span class="proj-tag tag-a">TensorFlow</span>
-          <span class="proj-tag tag-t">Flask</span>
-          <span class="proj-tag tag-r">Python</span>
+          <span class="pt pt-t">YOLOv8</span><span class="pt pt-b">OpenCV</span><span class="pt pt-a">TensorFlow</span><span class="pt pt-t">Flask</span><span class="pt pt-r">Python</span>
         </div>
-        <a href="https://github.com/abhinagote/Smart_Traffic_Violation_Detection" target="_blank" style="margin-top:1.25rem;font-size:.78rem;color:var(--teal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.35rem">View on GitHub ↗</a>
-      </div>
+        <div class="proj-link-row">View on GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
 
-      <div class="proj-card">
+      <!-- 04 -->
+      <a class="proj-card" href="https://github.com/abhinagote/Event_Collectives" target="_blank" rel="noopener">
         <div class="proj-num">04 / PROJECT</div>
-        <div class="proj-icon-wrap">🎉</div>
+        <div class="proj-icon">🎉</div>
         <h3 class="proj-name">Event Collectives</h3>
-        <p class="proj-desc">Event management platform for planning, resource optimization, and service booking — photographers, caterers, decorators and more. Includes a secure admin panel and responsive UI.</p>
+        <p class="proj-desc">Event management platform for planning, resource optimization, and service booking — photographers, caterers, decorators — with a secure admin panel.</p>
         <div class="proj-tags">
-          <span class="proj-tag tag-b">PHP</span>
-          <span class="proj-tag tag-a">MySQL</span>
-          <span class="proj-tag tag-t">JavaScript</span>
-          <span class="proj-tag tag-b">Bootstrap</span>
-          <span class="proj-tag tag-t">HTML/CSS</span>
+          <span class="pt pt-b">PHP</span><span class="pt pt-a">MySQL</span><span class="pt pt-t">JavaScript</span><span class="pt pt-b">Bootstrap</span><span class="pt pt-t">HTML/CSS</span>
         </div>
-        <a href="https://github.com/abhinagote/Event_Collectives" target="_blank" style="margin-top:1.25rem;font-size:.78rem;color:var(--teal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.35rem">View on GitHub ↗</a>
-      </div>
+        <div class="proj-link-row">View on GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
 
-      <div class="proj-card">
+      <!-- 05 -->
+      <a class="proj-card" href="https://github.com/abhinagote/Blood_donation_camp" target="_blank" rel="noopener">
         <div class="proj-num">05 / PROJECT</div>
-        <div class="proj-icon-wrap">🩸</div>
+        <div class="proj-icon">🩸</div>
         <h3 class="proj-name">Blood Donation Camp</h3>
-        <p class="proj-desc">DBMS-backed community platform for managing blood donation camps. Features online donor registration, slot booking, real-time blood availability tracking, and a secure admin panel.</p>
+        <p class="proj-desc">DBMS-backed platform for managing blood donation camps — online donor registration, slot booking, real-time blood availability tracking, and admin panel.</p>
         <div class="proj-tags">
-          <span class="proj-tag tag-b">PHP</span>
-          <span class="proj-tag tag-a">MySQL</span>
-          <span class="proj-tag tag-t">JavaScript</span>
-          <span class="proj-tag tag-t">HTML/CSS</span>
+          <span class="pt pt-b">PHP</span><span class="pt pt-a">MySQL</span><span class="pt pt-t">JavaScript</span><span class="pt pt-t">HTML/CSS</span>
         </div>
-        <a href="https://github.com/abhinagote/Blood_donation_camp" target="_blank" style="margin-top:1.25rem;font-size:.78rem;color:var(--teal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.35rem">View on GitHub ↗</a>
-      </div>
+        <div class="proj-link-row">View on GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
 
-      <div class="proj-card">
+      <!-- 06 -->
+      <a class="proj-card" href="https://github.com/abhinagote/Pose_Estimation_For_Security_Purpose" target="_blank" rel="noopener">
         <div class="proj-num">06 / PROJECT</div>
-        <div class="proj-icon-wrap">👁️</div>
+        <div class="proj-icon">👁️</div>
         <h3 class="proj-name">Pose Estimation for Security</h3>
-        <p class="proj-desc">Real-time surveillance system using OpenPose &amp; MediaPipe to detect suspicious body movements and flag unusual activities. Supports multi-person tracking in high-traffic environments.</p>
+        <p class="proj-desc">Real-time surveillance using OpenPose &amp; MediaPipe to detect suspicious body movements. Supports multi-person tracking in high-traffic environments.</p>
         <div class="proj-tags">
-          <span class="proj-tag tag-r">OpenPose</span>
-          <span class="proj-tag tag-b">MediaPipe</span>
-          <span class="proj-tag tag-a">TensorFlow</span>
-          <span class="proj-tag tag-t">OpenCV</span>
-          <span class="proj-tag tag-t">Python</span>
+          <span class="pt pt-r">OpenPose</span><span class="pt pt-b">MediaPipe</span><span class="pt pt-a">TensorFlow</span><span class="pt pt-t">OpenCV</span><span class="pt pt-t">Python</span>
         </div>
-        <a href="https://github.com/abhinagote/Pose_Estimation_For_Security_Purpose" target="_blank" style="margin-top:1.25rem;font-size:.78rem;color:var(--teal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.35rem">View on GitHub ↗</a>
-      </div>
+        <div class="proj-link-row">View on GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
 
-      <div class="proj-card" style="grid-column:1/-1;max-width:420px">
+      <!-- 07 -->
+      <a class="proj-card" href="https://github.com/aryan-nikam/Energy-consumption-prediction-and-optimization" target="_blank" rel="noopener">
         <div class="proj-num">07 / PROJECT</div>
-        <div class="proj-icon-wrap">⚡</div>
+        <div class="proj-icon">⚡</div>
         <h3 class="proj-name">Energy Consumption Optimization</h3>
-        <p class="proj-desc">ML-based system forecasting and optimizing energy consumption using SVM, ANN, Decision Trees &amp; Reinforcement Learning. Supports real-time energy management for residential, commercial, and industrial sectors.</p>
+        <p class="proj-desc">ML-based system forecasting &amp; optimizing energy consumption using SVM, ANN, Decision Trees &amp; Reinforcement Learning for residential, commercial, and industrial sectors.</p>
         <div class="proj-tags">
-          <span class="proj-tag tag-t">Python</span>
-          <span class="proj-tag tag-r">SVM</span>
-          <span class="proj-tag tag-b">ANN</span>
-          <span class="proj-tag tag-a">Reinforcement Learning</span>
-          <span class="proj-tag tag-t">scikit-learn</span>
+          <span class="pt pt-t">Python</span><span class="pt pt-r">SVM</span><span class="pt pt-b">ANN</span><span class="pt pt-a">Reinforcement Learning</span><span class="pt pt-t">scikit-learn</span>
         </div>
-        <a href="https://github.com/aryan-nikam/Energy-consumption-prediction-and-optimization" target="_blank" style="margin-top:1.25rem;font-size:.78rem;color:var(--teal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.35rem">View on GitHub ↗</a>
-      </div>
+        <div class="proj-link-row">View on GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
 
-      <div class="proj-card" style="max-width:420px">
+      <!-- 08 -->
+      <a class="proj-card" href="https://github.com/abhinagote/Accessibility_Improvement_For_Visual_Impaired_People" target="_blank" rel="noopener">
         <div class="proj-num">08 / PROJECT</div>
-        <div class="proj-icon-wrap">♿</div>
-        <h3 class="proj-name">Accessibility Tool for Visually Impaired</h3>
-        <p class="proj-desc">OCR and TTS-based tool converting PDFs and images to speech. Customizable text-to-speech pipeline helping visually impaired users access digital content independently.</p>
+        <div class="proj-icon">♿</div>
+        <h3 class="proj-name">Accessibility Tool — Visually Impaired</h3>
+        <p class="proj-desc">OCR and TTS-based tool converting PDFs and images to speech with customizable text-to-speech pipeline helping visually impaired users access digital content.</p>
         <div class="proj-tags">
-          <span class="proj-tag tag-t">Python</span>
-          <span class="proj-tag tag-b">OCR</span>
-          <span class="proj-tag tag-a">TTS</span>
-          <span class="proj-tag tag-t">Flask</span>
+          <span class="pt pt-t">Python</span><span class="pt pt-b">OCR</span><span class="pt pt-a">TTS</span><span class="pt pt-t">Flask</span>
         </div>
-        <a href="https://github.com/abhinagote/Accessibility_Improvement_For_Visual_Impaired_People" target="_blank" style="margin-top:1.25rem;font-size:.78rem;color:var(--teal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.35rem">View on GitHub ↗</a>
-      </div>
+        <div class="proj-link-row">View on GitHub <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
 
     </div>
   </div>
@@ -529,38 +469,33 @@ footer a{color:var(--teal);text-decoration:none}
 
 <div class="divider"></div>
 
-<!-- EDUCATION -->
+<!-- ═══ EDUCATION ═══ -->
 <section id="education" style="background:var(--white)">
   <div class="section">
-    <div class="section-head reveal">
-      <div class="section-kicker">Academic</div>
-      <h2 class="section-title">Education</h2>
-    </div>
+    <div class="reveal"><div class="sec-kicker">Academic</div><h2 class="sec-title">Education</h2></div>
     <div class="edu-grid reveal">
       <div class="edu-card">
-        <div class="edu-year">2023 – 2026</div>
-        <div class="edu-degree">B.Tech in Computer Science (AI &amp; DS)</div>
+        <div class="edu-yr">2023 – 2026</div>
+        <div class="edu-deg">B.Tech in Computer Science (AI &amp; DS)</div>
         <div class="edu-school">MIT World Peace University, Pune</div>
       </div>
       <div class="edu-card">
-        <div class="edu-year">2020 – 2023</div>
-        <div class="edu-degree">Diploma in Computer Engineering</div>
+        <div class="edu-yr">2020 – 2023</div>
+        <div class="edu-deg">Diploma in Computer Engineering</div>
         <div class="edu-school">R. C. Patel Polytechnic</div>
       </div>
       <div class="edu-card">
-        <div class="edu-year">2020</div>
-        <div class="edu-degree">SSC</div>
+        <div class="edu-yr">2020</div>
+        <div class="edu-deg">SSC</div>
         <div class="edu-school">Ravsaheb Rupchand Vidyalaya</div>
       </div>
     </div>
-
-    <!-- Publication -->
-    <div class="pub-section reveal">
-      <div class="pub-icon">📄</div>
+    <div class="pub-card reveal">
+      <div class="pub-icon-box">📄</div>
       <div>
         <div class="pub-kicker">Research Publication · 2026</div>
         <div class="pub-title">A Hybrid CNN-GNN Framework with Automated SAM Refinement for Accurate Brain Tumor Segmentation in Multi-Parametric MRI</div>
-        <div class="pub-year">Published 2026</div>
+        <div class="pub-yr">Published 2026</div>
       </div>
     </div>
   </div>
@@ -568,57 +503,42 @@ footer a{color:var(--teal);text-decoration:none}
 
 <div class="divider"></div>
 
-<!-- CONTACT -->
+<!-- ═══ CONTACT ═══ -->
 <section id="contact" style="background:var(--off)">
   <div class="section">
-    <div class="contact-wrap">
-      <div class="reveal-left">
+    <div class="contact-grid">
+      <div class="reveal-l">
         <h2 class="contact-big">Let's build<br>something <em>great</em><br>together.</h2>
         <p class="contact-sub">Open to full-time roles, internships, and interesting projects. Drop me a message — I reply fast.</p>
-        <a href="mailto:abhaynagote1235@gmail.com" class="btn btn-dark" style="font-size:.9rem;padding:.8rem 1.75rem">Send a Message ↗</a>
+        <a href="mailto:abhaynagote1235@gmail.com" class="btn btn-dark" style="font-size:.88rem;padding:.75rem 1.6rem">Send a Message ↗</a>
       </div>
-      <div class="contact-links-stack reveal">
-        <a href="mailto:abhaynagote1235@gmail.com" class="contact-row">
-          <div class="contact-row-icon">✉️</div>
-          <div class="contact-row-info">
-            <div class="contact-row-label">Email</div>
-            <div class="contact-row-val">abhaynagote1235@gmail.com</div>
-          </div>
-          <span class="contact-arrow">→</span>
+      <div class="contact-stack reveal">
+        <a href="mailto:abhaynagote1235@gmail.com" class="c-row">
+          <div class="c-icon">✉️</div>
+          <div class="c-info"><div class="c-label">Email</div><div class="c-val">abhaynagote1235@gmail.com</div></div>
+          <span class="c-arrow">→</span>
         </a>
-        <a href="https://www.linkedin.com/in/abhay-nagote-7b0492322/" target="_blank" class="contact-row">
-          <div class="contact-row-icon">🔗</div>
-          <div class="contact-row-info">
-            <div class="contact-row-label">LinkedIn</div>
-            <div class="contact-row-val">linkedin.com/in/abhay-nagote-7b0492322</div>
-          </div>
-          <span class="contact-arrow">→</span>
+        <a href="https://www.linkedin.com/in/abhay-nagote-7b0492322/" target="_blank" class="c-row">
+          <div class="c-icon">🔗</div>
+          <div class="c-info"><div class="c-label">LinkedIn</div><div class="c-val">abhay-nagote-7b0492322</div></div>
+          <span class="c-arrow">→</span>
         </a>
-        <a href="https://github.com/abhinagote" target="_blank" class="contact-row">
-          <div class="contact-row-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        <a href="https://github.com/abhinagote" target="_blank" class="c-row">
+          <div class="c-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
           </div>
-          <div class="contact-row-info">
-            <div class="contact-row-label">GitHub</div>
-            <div class="contact-row-val">github.com/abhinagote</div>
-          </div>
-          <span class="contact-arrow">→</span>
+          <div class="c-info"><div class="c-label">GitHub</div><div class="c-val">github.com/abhinagote</div></div>
+          <span class="c-arrow">→</span>
         </a>
-        <a href="tel:+918275871601" class="contact-row">
-          <div class="contact-row-icon">📱</div>
-          <div class="contact-row-info">
-            <div class="contact-row-label">Phone</div>
-            <div class="contact-row-val">+91 8275871601</div>
-          </div>
-          <span class="contact-arrow">→</span>
+        <a href="https://www.instagram.com/abhi_nagote_080/" target="_blank" class="c-row">
+          <div class="c-icon">📸</div>
+          <div class="c-info"><div class="c-label">Instagram</div><div class="c-val">@abhi_nagote_080</div></div>
+          <span class="c-arrow">→</span>
         </a>
-        <a href="https://www.instagram.com/abhi_nagote_080/" target="_blank" class="contact-row">
-          <div class="contact-row-icon">📸</div>
-          <div class="contact-row-info">
-            <div class="contact-row-label">Instagram</div>
-            <div class="contact-row-val">@abhi_nagote_080</div>
-          </div>
-          <span class="contact-arrow">→</span>
+        <a href="tel:+918275871601" class="c-row">
+          <div class="c-icon">📱</div>
+          <div class="c-info"><div class="c-label">Phone</div><div class="c-val">+91 8275871601</div></div>
+          <span class="c-arrow">→</span>
         </a>
       </div>
     </div>
@@ -631,29 +551,27 @@ footer a{color:var(--teal);text-decoration:none}
 </footer>
 
 <script>
-// Cursor
-const cur = document.getElementById('cursor');
-const ring = document.getElementById('cursorRing');
+// Custom cursor
+const C=document.getElementById('C'),CR=document.getElementById('CR');
 let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
-function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)}
-animRing();
-document.querySelectorAll('a,button,.skill-chip,.proj-card,.timeline-card,.edu-card').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cur.style.width='6px';cur.style.height='6px';ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='var(--teal)'});
-  el.addEventListener('mouseleave',()=>{cur.style.width='12px';cur.style.height='12px';ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='var(--teal)'});
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;C.style.left=mx+'px';C.style.top=my+'px'});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;CR.style.left=rx+'px';CR.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button,.sk,.proj-card,.tl-card,.edu-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{C.style.width='5px';C.style.height='5px';CR.style.width='50px';CR.style.height='50px'});
+  el.addEventListener('mouseleave',()=>{C.style.width='12px';C.style.height='12px';CR.style.width='36px';CR.style.height='36px'});
 });
 
 // Nav scroll
-const navbar=document.getElementById('navbar');
-window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',window.scrollY>40));
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
 
 // Scroll reveal
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
-},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal,.reveal-left').forEach((el,i)=>{
-  el.style.transitionDelay=(i%4)*.08+'s';
-  observer.observe(el);
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}})
+},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal,.reveal-l').forEach((el,i)=>{
+  el.style.transitionDelay=(i%5)*.07+'s';
+  obs.observe(el);
 });
 </script>
 </body>
