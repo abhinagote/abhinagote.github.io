@@ -135,6 +135,7 @@ nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.06)}
 
 /* PROJECTS */
 .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.projects-grid .proj-card:nth-last-child(-n+2):nth-child(3n+1){grid-column:span 1}
 .proj-card{border:1px solid var(--line);border-radius:var(--r3);padding:2rem;transition:all .3s;position:relative;overflow:hidden;background:var(--white);display:flex;flex-direction:column}
 .proj-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,184,150,.04),transparent 60%);opacity:0;transition:opacity .3s}
 .proj-card:hover{border-color:var(--teal);transform:translateY(-6px);box-shadow:0 24px 48px rgba(0,0,0,.08)}
@@ -245,8 +246,9 @@ footer a{color:var(--teal);text-decoration:none}
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           Get in Touch
         </a>
-        <a href="https://linkedin.com/in/abhay-nagote" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+        <a href="https://www.linkedin.com/in/abhay-nagote-7b0492322/" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
         <a href="https://github.com/abhinagote" target="_blank" class="btn btn-outline">GitHub ↗</a>
+        <a href="https://www.instagram.com/abhi_nagote_080/" target="_blank" class="btn btn-outline">Instagram ↗</a>
         <a href="Resume_Abhay-Nagote.pdf" download="Resume_Abhay-Nagote.pdf" class="btn btn-outline" style="border-color:var(--teal);color:var(--teal-dk)">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Resume
@@ -254,7 +256,7 @@ footer a{color:var(--teal);text-decoration:none}
       </div>
       <div class="hero-meta">
         <div class="hero-meta-item">
-          <div class="hero-meta-num">3<span>+</span></div>
+          <div class="hero-meta-num">8<span>+</span></div>
           <div class="hero-meta-label">Projects</div>
         </div>
         <div class="hero-meta-item">
@@ -401,11 +403,28 @@ footer a{color:var(--teal);text-decoration:none}
       <h2 class="section-title">Featured Projects</h2>
     </div>
     <div class="projects-grid reveal">
+
       <div class="proj-card">
         <div class="proj-num">01 / PROJECT</div>
+        <div class="proj-icon-wrap">🧠</div>
+        <h3 class="proj-name">Brain Tumor Detection System</h3>
+        <p class="proj-desc">AI-powered web app detecting brain tumors from MRI scans using a 7-stage multi-model ensemble — CNN texture analysis, SAM segmentation, and GNN geometric reasoning. Returns visual evidence at every pipeline stage.</p>
+        <div class="proj-tags">
+          <span class="proj-tag tag-t">TensorFlow</span>
+          <span class="proj-tag tag-r">PyTorch</span>
+          <span class="proj-tag tag-b">SAM</span>
+          <span class="proj-tag tag-a">GNN</span>
+          <span class="proj-tag tag-t">React</span>
+          <span class="proj-tag tag-t">Flask</span>
+        </div>
+        <a href="https://github.com/ArpanMoharana/BASIC-Brain-Tumor-Detection" target="_blank" style="margin-top:1.25rem;font-size:.78rem;color:var(--teal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.35rem">View on GitHub ↗</a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-num">02 / PROJECT</div>
         <div class="proj-icon-wrap">🏦</div>
         <h3 class="proj-name">Loan Processing &amp; Approval System</h3>
-        <p class="proj-desc">Full-stack loan processing platform with React, Spring Boot and MySQL. Features BPMN-based approval routing via Camunda BPM and containerized deployment with Docker Compose.</p>
+        <p class="proj-desc">Full-stack loan processing platform with React, Spring Boot and MySQL. Features BPMN-based approval routing via Camunda BPM and fully containerized deployment with Docker Compose.</p>
         <div class="proj-tags">
           <span class="proj-tag tag-t">React</span>
           <span class="proj-tag tag-t">Spring Boot</span>
@@ -413,9 +432,11 @@ footer a{color:var(--teal);text-decoration:none}
           <span class="proj-tag tag-b">Camunda BPM</span>
           <span class="proj-tag tag-r">Docker</span>
         </div>
+        <a href="https://github.com/abhinagote/End-to-End-Loan-Processing-and-Approval-System" target="_blank" style="margin-top:1.25rem;font-size:.78rem;color:var(--teal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.35rem">View on GitHub ↗</a>
       </div>
+
       <div class="proj-card">
-        <div class="proj-num">02 / PROJECT</div>
+        <div class="proj-num">03 / PROJECT</div>
         <div class="proj-icon-wrap">🚦</div>
         <h3 class="proj-name">Smart Traffic Violation Detection</h3>
         <p class="proj-desc">Real-time AI traffic violation detection using YOLOv8, OpenCV &amp; TensorFlow. Automates helmet, triple-seat &amp; wrong-way detection with a Flask dashboard for alert management.</p>
@@ -426,9 +447,70 @@ footer a{color:var(--teal);text-decoration:none}
           <span class="proj-tag tag-t">Flask</span>
           <span class="proj-tag tag-r">Python</span>
         </div>
+        <a href="https://github.com/abhinagote/Smart_Traffic_Violation_Detection" target="_blank" style="margin-top:1.25rem;font-size:.78rem;color:var(--teal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.35rem">View on GitHub ↗</a>
       </div>
+
       <div class="proj-card">
-        <div class="proj-num">03 / PROJECT</div>
+        <div class="proj-num">04 / PROJECT</div>
+        <div class="proj-icon-wrap">🎉</div>
+        <h3 class="proj-name">Event Collectives</h3>
+        <p class="proj-desc">Event management platform for planning, resource optimization, and service booking — photographers, caterers, decorators and more. Includes a secure admin panel and responsive UI.</p>
+        <div class="proj-tags">
+          <span class="proj-tag tag-b">PHP</span>
+          <span class="proj-tag tag-a">MySQL</span>
+          <span class="proj-tag tag-t">JavaScript</span>
+          <span class="proj-tag tag-b">Bootstrap</span>
+          <span class="proj-tag tag-t">HTML/CSS</span>
+        </div>
+        <a href="https://github.com/abhinagote/Event_Collectives" target="_blank" style="margin-top:1.25rem;font-size:.78rem;color:var(--teal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.35rem">View on GitHub ↗</a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-num">05 / PROJECT</div>
+        <div class="proj-icon-wrap">🩸</div>
+        <h3 class="proj-name">Blood Donation Camp</h3>
+        <p class="proj-desc">DBMS-backed community platform for managing blood donation camps. Features online donor registration, slot booking, real-time blood availability tracking, and a secure admin panel.</p>
+        <div class="proj-tags">
+          <span class="proj-tag tag-b">PHP</span>
+          <span class="proj-tag tag-a">MySQL</span>
+          <span class="proj-tag tag-t">JavaScript</span>
+          <span class="proj-tag tag-t">HTML/CSS</span>
+        </div>
+        <a href="https://github.com/abhinagote/Blood_donation_camp" target="_blank" style="margin-top:1.25rem;font-size:.78rem;color:var(--teal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.35rem">View on GitHub ↗</a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-num">06 / PROJECT</div>
+        <div class="proj-icon-wrap">👁️</div>
+        <h3 class="proj-name">Pose Estimation for Security</h3>
+        <p class="proj-desc">Real-time surveillance system using OpenPose &amp; MediaPipe to detect suspicious body movements and flag unusual activities. Supports multi-person tracking in high-traffic environments.</p>
+        <div class="proj-tags">
+          <span class="proj-tag tag-r">OpenPose</span>
+          <span class="proj-tag tag-b">MediaPipe</span>
+          <span class="proj-tag tag-a">TensorFlow</span>
+          <span class="proj-tag tag-t">OpenCV</span>
+          <span class="proj-tag tag-t">Python</span>
+        </div>
+        <a href="https://github.com/abhinagote/Pose_Estimation_For_Security_Purpose" target="_blank" style="margin-top:1.25rem;font-size:.78rem;color:var(--teal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.35rem">View on GitHub ↗</a>
+      </div>
+
+      <div class="proj-card" style="grid-column:1/-1;max-width:420px">
+        <div class="proj-num">07 / PROJECT</div>
+        <div class="proj-icon-wrap">⚡</div>
+        <h3 class="proj-name">Energy Consumption Optimization</h3>
+        <p class="proj-desc">ML-based system forecasting and optimizing energy consumption using SVM, ANN, Decision Trees &amp; Reinforcement Learning. Supports real-time energy management for residential, commercial, and industrial sectors.</p>
+        <div class="proj-tags">
+          <span class="proj-tag tag-t">Python</span>
+          <span class="proj-tag tag-r">SVM</span>
+          <span class="proj-tag tag-b">ANN</span>
+          <span class="proj-tag tag-a">Reinforcement Learning</span>
+          <span class="proj-tag tag-t">scikit-learn</span>
+        </div>
+        <a href="https://github.com/aryan-nikam/Energy-consumption-prediction-and-optimization" target="_blank" style="margin-top:1.25rem;font-size:.78rem;color:var(--teal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.35rem">View on GitHub ↗</a>
+      </div>
+
+      <div class="proj-card" style="max-width:420px">
+        <div class="proj-num">08 / PROJECT</div>
         <div class="proj-icon-wrap">♿</div>
         <h3 class="proj-name">Accessibility Tool for Visually Impaired</h3>
         <p class="proj-desc">OCR and TTS-based tool converting PDFs and images to speech. Customizable text-to-speech pipeline helping visually impaired users access digital content independently.</p>
@@ -438,7 +520,9 @@ footer a{color:var(--teal);text-decoration:none}
           <span class="proj-tag tag-a">TTS</span>
           <span class="proj-tag tag-t">Flask</span>
         </div>
+        <a href="https://github.com/abhinagote/Accessibility_Improvement_For_Visual_Impaired_People" target="_blank" style="margin-top:1.25rem;font-size:.78rem;color:var(--teal);text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.35rem">View on GitHub ↗</a>
       </div>
+
     </div>
   </div>
 </section>
@@ -502,11 +586,11 @@ footer a{color:var(--teal);text-decoration:none}
           </div>
           <span class="contact-arrow">→</span>
         </a>
-        <a href="https://linkedin.com/in/abhay-nagote" target="_blank" class="contact-row">
+        <a href="https://www.linkedin.com/in/abhay-nagote-7b0492322/" target="_blank" class="contact-row">
           <div class="contact-row-icon">🔗</div>
           <div class="contact-row-info">
             <div class="contact-row-label">LinkedIn</div>
-            <div class="contact-row-val">linkedin.com/in/abhay-nagote</div>
+            <div class="contact-row-val">linkedin.com/in/abhay-nagote-7b0492322</div>
           </div>
           <span class="contact-arrow">→</span>
         </a>
@@ -525,6 +609,14 @@ footer a{color:var(--teal);text-decoration:none}
           <div class="contact-row-info">
             <div class="contact-row-label">Phone</div>
             <div class="contact-row-val">+91 8275871601</div>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
+        <a href="https://www.instagram.com/abhi_nagote_080/" target="_blank" class="contact-row">
+          <div class="contact-row-icon">📸</div>
+          <div class="contact-row-info">
+            <div class="contact-row-label">Instagram</div>
+            <div class="contact-row-val">@abhi_nagote_080</div>
           </div>
           <span class="contact-arrow">→</span>
         </a>
